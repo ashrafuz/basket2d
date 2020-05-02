@@ -29,6 +29,9 @@ public class Ball2d : MonoBehaviour {
 
 	Touch initialTouch = new Touch();
 
+	CircleCollider2D circleCollider;
+	SpriteRenderer sprite;
+
 	void Awake(){
 
 		//TODO TAKE FROM PREFS
@@ -37,11 +40,15 @@ public class Ball2d : MonoBehaviour {
 		isActiveColliders = false;
 		initAgain = false;
 		isShooting = false;
+		sprite = gameObject.GetComponent<SpriteRenderer> ();
+		circleCollider = gameObject.GetComponent<CircleCollider2D> ();
+
 		start = gameObject.GetComponent<SpriteRenderer>().material.color;
 		end = new Color (start.r,start.g,start.b,0.0f);
 	}//awake
 	
 	void Start () {
+		Time.timeScale = 2f;
 		ballBody = gameObject.GetComponent<Rigidbody2D> ();
 	}//start
 
@@ -55,7 +62,7 @@ public class Ball2d : MonoBehaviour {
 
 	public void Reset(){
 		//Application.LoadLevel(Application.loadedLevel);
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SceneManager.LoadScene ( SceneManager.GetActiveScene ().buildIndex );
 	}//reset
 	
 	/*BUTTON CONTROLS END*/
@@ -66,14 +73,16 @@ public class Ball2d : MonoBehaviour {
 		collider2.SetActive (act);
 		potMarker.SetActive (act);
 		deactivateTriggers.SetActive (act);
-		bool oposite = act ? false : true;
-		activateTrigger.SetActive (oposite);
+
+		activateTrigger.SetActive (!act);
 
 		if (act) {
-			hoop.sortingOrder = 10;
+			///Debug.Log ("acting");
+			hoop.sortingOrder = 2;
 			//backgroundOfHoop.sortingOrder = (hoop.sortingOrder - 1);
 		} else {
-			hoop.sortingOrder = 0;
+			//Debug.Log ( "not acting" );
+			hoop.sortingOrder = -1;
 			//backgroundOfHoop.sortingOrder = (hoop.sortingOrder - 1);
 		}
 	}//activateColliders
@@ -88,22 +97,27 @@ public class Ball2d : MonoBehaviour {
 	void ReinitializeBall(){
 		POT_SCORE = 2;
 		shadow.SetActive (true);
-		gameObject.GetComponent<CircleCollider2D>().enabled = true;
-		gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+		circleCollider.enabled = true;
+		sprite.sortingOrder = 0;
+		sprite.material.color = start;
+
 		float randomXPos = Random.Range (-2.0f,2.0f);
 		transform.position = new Vector3 (randomXPos,-3.62f,transform.position.z);
 		shadow.transform.position = new Vector2(randomXPos,shadow.transform.position.y);
 		ballBody.velocity = Vector2.zero;
         ballBody.freezeRotation = true;
-		gameObject.GetComponent<SpriteRenderer> ().material.color = start;
+		
 		transform.rotation = Quaternion.Euler(0,0,0);
 		transform.localScale = new Vector2(0.75f,0.75f);
 	}//ball
 	
-
-Vector2 initialTouchPos = Vector2.zero;
 	void Update () {
-		Time.timeScale = 2f;
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			ShootDefault ();
+		}
+
 		if (isShooting) {
 			Vector3 currentSize = transform.localScale;
 			currentSize.x -= Time.deltaTime * 0.5f;
@@ -145,21 +159,17 @@ Vector2 initialTouchPos = Vector2.zero;
 			}
 		}
 
-		if (isActiveColliders) {
-			SetColliders (true);
-		} else {
-			SetColliders (false);
-		}
+		SetColliders ( isActiveColliders );
 
 		// swipe controller
-		foreach(Touch t in Input.touches){
-			//Debug.Log("i am here");
+		foreach (Touch t in Input.touches){
+			Debug.Log ("touch " + t.phase);
 			if(t.phase == TouchPhase.Began){
 				initialTouch = t;
 			} else if (t.phase == TouchPhase.Ended){
 				float deltaX = initialTouch.position.x - t.position.x;
 				float deltaY = Mathf.Abs(initialTouch.position.y - t.position.y);
-				
+				Debug.Log ("delta " + deltaY);
 				if(deltaY<50 || (initialTouch.position.y > t.position.y)){ continue; } // don't need to check further, too small swipe or reverse swipe
 				
 				forceX = Mathf.Abs(deltaX)*0.65f;
@@ -176,35 +186,6 @@ Vector2 initialTouchPos = Vector2.zero;
 				initialTouch = new Touch();
 			}//if
 		}//foreach
-
-
-
-		if (Input.GetMouseButtonDown(0)){
-			Debug.Log("Got initial touch");
-			initialTouchPos = Input.mousePosition;
-		}
-
-		if (Input.GetMouseButtonUp(0)){
-			// var t = Input.mousePosition;
-			float deltaX = initialTouchPos.x - Input.mousePosition.x;
-				float deltaY = Mathf.Abs(initialTouchPos.y - Input.mousePosition.y);
-				
-				if(deltaY<50 || (initialTouchPos.y > Input.mousePosition.y)){ 
-					return; 
-				} // don't need to check further, too small swipe or reverse swipe
-				
-				forceX = Mathf.Abs(deltaX)*0.65f;
-				forceY = 575f;
-				if(deltaX < 0){
-					//swiping left to right
-					shootingDirection = 1;
-					Shoot(forceX,forceY);
-				} else if (deltaX >= 0){
-					//swiping right to left
-					shootingDirection = -1;
-					Shoot(-forceX,forceY);
-				}
-		}
 
 		if(Input.GetKey(KeyCode.Escape)){
 			Application.Quit();

@@ -30,18 +30,18 @@ public class UIController : MonoBehaviour {
 		if(scoreText.fontSize <= 0){
 			sizeToChange = 10;
 			scoreText.text = ""+Ball2d.SCORE;
-			StartCoroutine(HoldFor());
+			StartCoroutine("HoldFor");
 		} else if (scoreText.fontSize > (initialSize+2)){
 			scoreText.text = ""+Ball2d.SCORE;
 		} else {
-			StartCoroutine(HoldFor());
+			StartCoroutine("HoldFor");
 		}
 	}//hold for
 
 	void StartAnimation(){
 		sizeToChange = -10;
-		StopCoroutine (HoldFor());
-		StartCoroutine (HoldFor());
+		StopCoroutine ("HoldFor");
+		StartCoroutine ("HoldFor");
 	}//startanimation
 
 	void Update () {

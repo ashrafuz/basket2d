@@ -15,14 +15,14 @@ public class Basket : MonoBehaviour {
 
 	void Move(){
 		Vector3 currentPosition = transform.position;
-		if (currentPosition.x > 1.24)
+		if (currentPosition.x > 1.24f)
 			directionX = -1; // go left
-		else if (currentPosition.x < -1.24)
+		else if (currentPosition.x < -1.24f)
 			directionX = 1; //go right
 
-		if (currentPosition.y > 1.24)
+		if (currentPosition.y > 1.24f)
 			directionY = -1; // go down
-		else if (currentPosition.y < -1.24)
+		else if (currentPosition.y < -1.24f)
 			directionY = 1; //go up
 
 		if (Ball2d.SCORE > 10 && Ball2d.SCORE < 25) {
@@ -42,7 +42,7 @@ public class Basket : MonoBehaviour {
 	}//move
 
 	void FixedUpdate () {
-		if (Ball2d.SCORE > 10) {
+		if (Ball2d.SCORE > 3) {
 			Move ();
 		} else {
 			transform.position = startPos;

@@ -163,6 +163,18 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 21210164, guid: 258732f09830d5548b59da6c9576451a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 461472, guid: 258732f09830d5548b59da6c9576451a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462670, guid: 258732f09830d5548b59da6c9576451a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 258732f09830d5548b59da6c9576451a, type: 3}
 --- !u!212 &122946358 stripped
@@ -515,6 +527,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: collider1
+      value: 
+      objectReference: {fileID: 233170750}
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: collider2
+      value: 
+      objectReference: {fileID: 381666728}
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: potMarker
+      value: 
+      objectReference: {fileID: 561038919}
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: deactivateTriggers
+      value: 
+      objectReference: {fileID: 831647101}
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: activateTrigger
+      value: 
+      objectReference: {fileID: 1059721994}
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: backgroundOfHoop
+      value: 
+      objectReference: {fileID: 122946358}
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: hoop
+      value: 
+      objectReference: {fileID: 289038826}
+    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
+      propertyPath: shadow
+      value: 
+      objectReference: {fileID: 1033700446}
     - target: {fileID: 476606, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.72
@@ -567,38 +611,6 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: collider1
-      value: 
-      objectReference: {fileID: 233170750}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: collider2
-      value: 
-      objectReference: {fileID: 381666728}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: potMarker
-      value: 
-      objectReference: {fileID: 561038919}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: deactivateTriggers
-      value: 
-      objectReference: {fileID: 831647101}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: activateTrigger
-      value: 
-      objectReference: {fileID: 1059721994}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: backgroundOfHoop
-      value: 
-      objectReference: {fileID: 122946358}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: hoop
-      value: 
-      objectReference: {fileID: 289038826}
-    - target: {fileID: 11418778, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
-      propertyPath: shadow
-      value: 
-      objectReference: {fileID: 1033700446}
     - target: {fileID: 21222760, guid: 79e8934b54211df4fa28d63aff745181, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -711,6 +723,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11479056, guid: cc5bb0ee2b039d84ab4b9694675d9883, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479056, guid: cc5bb0ee2b039d84ab4b9694675d9883, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 119100, guid: cc5bb0ee2b039d84ab4b9694675d9883, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -859,14 +879,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 746776230}
-    - target: {fileID: 11479056, guid: cc5bb0ee2b039d84ab4b9694675d9883, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 11479056, guid: cc5bb0ee2b039d84ab4b9694675d9883, type: 3}
-      propertyPath: m_FontData.m_BestFit
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 11484758, guid: cc5bb0ee2b039d84ab4b9694675d9883, type: 3}
       propertyPath: m_FontData.m_BestFit
       value: 1
